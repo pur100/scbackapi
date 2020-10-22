@@ -11,6 +11,8 @@ Rails.application.routes.draw do
    get :debtors, to: 'debtors#user_index'
  end
 
+ get '/', to: 'invoices#index'
+
  resources :invoices
  resources :debtors do
    get :invoices, to: 'invoices#debtor_index'
