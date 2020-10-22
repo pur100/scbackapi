@@ -1,2 +1,2 @@
-class PasswordRecoveryMailer < ApplicationMailer
-end
+# class PasswordRecoveryMailer < ApplicationMailer
+# end
