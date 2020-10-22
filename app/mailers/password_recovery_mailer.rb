@@ -1,2 +1,0 @@
-# class PasswordRecoveryMailer < ApplicationMailer
-# end
