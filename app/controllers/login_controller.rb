@@ -18,8 +18,11 @@ class LoginController < ApplicationController
 
   def destroy
     session = JWTSessions::Session.new(payload: payload)
-    session.flush_by_access_payload
-    render json: :ok
+    if session.flush_by_access_payload
+      render json: :ok
+    else
+      render json: 'NOT OK', status: :unauthorized
+    end
   end
 
   def destroy_by_refresh
