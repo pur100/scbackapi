@@ -1,28 +1,39 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :authorize_access_request!
+  before_action :authorize_access_request!, only: [:show]
 
   def create
+    p user_params
     user = User.new(user_params)
+    puts "----------------------------------------"
+    p user.valid?
     if user.save!
-      mail(to:"h.g.mancini@gmail.com", subject: 'You the man :)')
-      render json: { current_user: current_user.to_json, user: user.to_json }
+      puts "user saved"
+      if user.authenticate(params[:password])
+        payload = { user_id: user.id }
+        session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
+        render json: { session: session.login, user: user }
+      else
+        render json: 'Invalid user', status: :unauthorized
+      end
+      # render json: { current_user: current_user.to_json, user: user.to_json }
     else
-      render json: { errors: user.errors.full_messages }
+      render json: { errors: user.errors.full_messages, custom: "fuuuuuck" }
     end
   end
 
   def show
+    puts "inside user show"
     user = User.find(params[:id])
     debtors = user.debtors
     invoices = Invoice.where("user_id = #{user.id}")
-    render json: { current_user: current_user.to_json, user: user.to_json, debtors: debtors, invoices: invoices}
+    render json: {  user: user.to_json, debtors: debtors, invoices: invoices}
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.permit(:email, :password, :password_confirmation)
   end
 end

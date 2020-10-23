@@ -5,11 +5,12 @@ class LoginController < ApplicationController
   before_action :authorize_refresh_request!, only: [:destroy_by_refresh]
 
   def create
+    puts 'inside login create'
     user = User.find_by!(email: params[:email])
     if user.authenticate(params[:password])
       payload = { user_id: user.id }
-      session = JWTSessions::Session.new(payload: payload)
-      render json: session.login
+      session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
+      render json: { session: session.login, user: user }
     else
       render json: 'Invalid user', status: :unauthorized
     end
