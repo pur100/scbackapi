@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_20_094056) do
+ActiveRecord::Schema.define(version: 2020_10_28_132745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "company", default: {}, null: false
+    t.integer "siren"
+    t.index ["company"], name: "index_contacts_on_company", using: :gin
+  end
 
   create_table "debtors", force: :cascade do |t|
     t.string "siret"
@@ -22,18 +34,16 @@ ActiveRecord::Schema.define(version: 2020_10_20_094056) do
     t.string "contact_mail"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_debtors_on_user_id"
   end
 
   create_table "invoices", force: :cascade do |t|
     t.integer "amount"
     t.string "file"
-    t.integer "debtor_id"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["debtor_id"], name: "index_invoices_on_debtor_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -45,6 +55,5 @@ ActiveRecord::Schema.define(version: 2020_10_20_094056) do
   end
 
   add_foreign_key "debtors", "users"
-  add_foreign_key "invoices", "debtors"
   add_foreign_key "invoices", "users"
 end
