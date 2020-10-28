@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Nouveau message de <%= @contact.first_name %>!</p>
+
+    <h3>Informations de contact :</h3>
+    <p>Prénom : <%= @contact.first_name %></p>
+    <p>Nom : <%= @contact.last_name %></p>
+    <p>Email : <%= @contact.email %></p>
+
+    <h3>Société : (si vide, siren non vérifié)</h3>
+    <p>Siret : <%= @contact.company["siret"] %></p>
+    <p>Nom : <%= @contact.company["company_name"] %></p>
+    <p>Adresse : <%= @contact.company["company_address"] %> <%= @contact.company["company_zip"] %> <%= @contact.company["company_city"] %></p>
+
+    <h3>Message</h3>
+    <p><%= @contact.message %></p>
+  </body>
+</html>

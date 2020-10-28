@@ -16,9 +16,10 @@ class ContactsController < ApplicationController
       puts @contact
       puts @contact.valid?
       if @contact.save!
+        ContactFormMailer.with(contact: @contact).contact_form_mail.deliver_later
         render json: @contact, status: :created, location: @contact
       else
-        render json: @contact.errors, status: :unprocessable_entity
+        render json: @contact.errors, status: :ok
       end
     end
 
