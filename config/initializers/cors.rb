@@ -15,7 +15,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    origins 'https://nuxt-sc.herokuapp.com/'
+    origins 'https://nuxt-sc.herokuapp.com'
 
     resource '*',
       headers: :any,
