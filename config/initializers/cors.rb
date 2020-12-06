@@ -15,6 +15,15 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
+    origins 'http://www.solutioncreance.fr'
+
+    resource '*',
+      headers: :any,
+      credentials: true,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+
+  allow do
     origins 'https://nuxt-sc.herokuapp.com'
 
     resource '*',
