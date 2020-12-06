@@ -1,7 +1,6 @@
 class ContactFormMailer < ApplicationMailer
   def contact_form_mail
       @contact = params[:contact]
-      default from: 'contact@solutioncreance.fr'
-      mail(to: "contact@solutioncreance.fr", subject: "Nouveau contact !")
+      mail(to: "h.g.mancini@gmail.com", subject: "Nouveau contact !")
     end
 end
