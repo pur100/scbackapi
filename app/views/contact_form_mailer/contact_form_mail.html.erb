@@ -9,9 +9,11 @@
     <p>Prénom : <%= @contact.first_name %></p>
     <p>Nom : <%= @contact.last_name %></p>
     <p>Email : <%= @contact.email %></p>
+    <p>SIREN : <%= @contact.siren %></p>
     <p>Raison Sociale : <%= @contact.company_name %></p>
 
-    <h3>Société : (si vide, siren non vérifié)</h3>
+    <h3>Société => Informations récoltées via API SIRENE</h3>
+
     <p>Siret : <%= @contact.company["siret"] %></p>
     <p>Raison Sociale : <%= @contact.company["company_name"] %></p>
     <p>Adresse : <%= @contact.company["company_address"] %> <%= @contact.company["company_zip"] %> <%= @contact.company["company_city"] %></p>
