@@ -20,6 +20,7 @@ class ContactsController < ApplicationController
         p "SENDING MAIL !!!!"
         render json: @contact, status: :created, location: @contact
       else
+        p render json: @contact.errors, status: :ok
         render json: @contact.errors, status: :ok
       end
     end
