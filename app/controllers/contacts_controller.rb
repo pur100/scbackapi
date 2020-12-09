@@ -13,14 +13,12 @@ class ContactsController < ApplicationController
     # POST /contacts
     def create
       @contact = Contact.new(contact_params)
-      puts @contact
-      puts @contact.valid?
-      if @contact.save!
+      if @contact.save
         ContactFormMailer.with(contact: @contact).contact_form_mail.deliver_later
         p "SENDING MAIL !!!!"
         render json: @contact, status: :created, location: @contact
       else
-        p render json: @contact.errors, status: :ok
+        puts "--------------------------------------------ELSE NOT SAVING"
         render json: @contact.errors, status: :ok
       end
     end
