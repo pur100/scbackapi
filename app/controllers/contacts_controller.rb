@@ -13,6 +13,10 @@ class ContactsController < ApplicationController
     # POST /contacts
     def create
       @contact = Contact.new(contact_params)
+      if !@contact.valid
+        puts "not valid"
+        render json: @contact.errors, status: :ok
+      end
       if @contact.save
         ContactFormMailer.with(contact: @contact).contact_form_mail.deliver_later
         p "SENDING MAIL !!!!"
