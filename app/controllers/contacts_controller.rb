@@ -13,7 +13,7 @@ class ContactsController < ApplicationController
     # POST /contacts
     def create
       @contact = Contact.new(contact_params)
-      if !@contact.valid
+      if !@contact.valid?
         puts "not valid"
         render json: @contact.errors, status: :ok
       end
