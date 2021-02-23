@@ -12,8 +12,11 @@ class ContactsController < ApplicationController
 
     # POST /contacts
     def create
+      puts "inside create printing CONTACGT -------------------"
       @contact = Contact.new(contact_params)
-      if @contact.save
+      p @contact
+
+      if @contact.save!
         ContactFormMailer.with(contact: @contact).contact_form_mail.deliver_later
         p "SENDING MAIL !!!!"
         render json: @contact, status: :created, location: @contact
@@ -31,6 +34,6 @@ class ContactsController < ApplicationController
 
       # Only allow a trusted parameter "white list" through.
       def contact_params
-        params.permit(:first_name, :last_name, :email, :phone, :message, :company, :siren, :siret, :company_name, :company_address, :company_zip, :company_city)
+        params.permit(:first_name, :last_name, :email, :message, :company, :siren, :siret, :company_name, :company_address, :company_zip, :company_city, :phone)
       end
 end
