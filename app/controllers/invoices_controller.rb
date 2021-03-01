@@ -1,6 +1,5 @@
     class InvoicesController < ApplicationController
       before_action :set_invoice, only: [:show, :update, :destroy]
-      before_action :authorize_access_request! #, except: [:show, :index]
 
       # GET /invoices
       def index
@@ -21,9 +20,12 @@
 
       # POST /invoices
       def create
-        @invoice = Invoice.new(used_params)
-        attach_main_pic(@invoice) if invoice_params[:file].present?
 
+        @invoice = Invoice.new(item_params)
+        p "---------------------------------"
+        result = Cloudinary::Uploader.upload(invoice_params[:picture])
+        @invoice.file = result["url"]
+        # attach_main_pic(@invoice)
         if @invoice.save!
           render json: @invoice, status: :created, location: @invoice
         else
@@ -51,21 +53,21 @@
           @invoice = Invoice.find(params[:id])
         end
 
-        def attach_main_pic(invoice)
-           invoice.file.attach(invoice_params[:file])
+        def attach_main_pic(item)
+          item.file.attach(invoice_params[:picture])
         end
 
-        def used_params
-            {
-              amount: invoice_params[:amount],
-              user_id: invoice_params[:user_id],
-            }
+        def item_params
+          {
+            amount: invoice_params[:amount],
+            user_id: invoice_params[:user_id],
+          }
         end
 
 
         # Only allow a trusted parameter "white list" through.
         def invoice_params
-          params.permit(:amount, :file, :user_id)
+          params.permit!
         end
     end
 
