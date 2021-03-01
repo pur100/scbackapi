@@ -22,12 +22,12 @@
       def create
 
         @invoice = Invoice.new(item_params)
-        p "---------------------------------"
         result = Cloudinary::Uploader.upload(invoice_params[:picture])
         @invoice.file = result["url"]
         @invoice.status = "En attente"
         # attach_main_pic(@invoice)
         if @invoice.save!
+          InvoiceMailer.with(invoice: @invoice).invoice_mail.deliver_later
           render json: @invoice, status: :created, location: @invoice
         else
           render json: @invoice.errors, status: :unprocessable_entity
