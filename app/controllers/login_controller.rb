@@ -6,13 +6,13 @@ class LoginController < ApplicationController
 
   def create
     puts 'inside login create'
-    user = User.find_by!(email: params[:email])
-    if user.authenticate(params[:password])
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
       payload = { user_id: user.id }
       session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
       render json: { session: session.login, user: user, invoices: user.invoices }
     else
-      render json: 'Invalid user', status: :unauthorized
+      render json: {error_message: "Could not log in, please check your credentials and try again"}
     end
   end
 

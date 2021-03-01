@@ -4,6 +4,7 @@ class RefreshByAccessController < ApplicationController
   before_action :authorize_refresh_by_access_request!
 
   def create
+    puts "gooing unto create"
     session = JWTSessions::Session.new(payload: claimless_payload, refresh_by_access_allowed: true)
     tokens = session.refresh_by_access_payload do
       # notify the support

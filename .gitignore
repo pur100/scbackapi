@@ -21,3 +21,4 @@
 
 
 /local_env.yml
+.env*

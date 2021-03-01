@@ -21,7 +21,8 @@
 
       # POST /invoices
       def create
-        @invoice = Invoice.new(invoice_params)
+        @invoice = Invoice.new(used_params)
+        attach_main_pic(@invoice) if invoice_params[:file].present?
 
         if @invoice.save!
           render json: @invoice, status: :created, location: @invoice
@@ -50,9 +51,21 @@
           @invoice = Invoice.find(params[:id])
         end
 
+        def attach_main_pic(invoice)
+           invoice.file.attach(invoice_params[:file])
+        end
+
+        def used_params
+            {
+              amount: invoice_params[:amount],
+              user_id: invoice_params[:user_id],
+            }
+        end
+
+
         # Only allow a trusted parameter "white list" through.
         def invoice_params
-          params.permit(:amount, :file, :debtor_id, :user_id, :contact_phone, :contact_mail, :active)
+          params.permit(:amount, :file, :user_id)
         end
     end
 
