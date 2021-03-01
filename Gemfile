@@ -33,6 +33,9 @@ gem "jwt_sessions"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
 
+gem "administrate"
+
+
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'cloudinary', '~> 1.16.0'
