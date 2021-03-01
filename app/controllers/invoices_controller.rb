@@ -1,5 +1,5 @@
     class InvoicesController < ApplicationController
-      before_action :set_invoice, only: [:show, :update, :destroy]
+      before_action :set_invoice, only: [:show, :update]
 
       # GET /invoices
       def index
@@ -25,6 +25,7 @@
         p "---------------------------------"
         result = Cloudinary::Uploader.upload(invoice_params[:picture])
         @invoice.file = result["url"]
+        @invoice.status = "En attente"
         # attach_main_pic(@invoice)
         if @invoice.save!
           render json: @invoice, status: :created, location: @invoice
@@ -44,13 +45,24 @@
 
       # DELETE /invoices/1
       def destroy
-        @invoice.destroy
+        @invoice = Invoice.find(params[:id].to_i)
+        p 'inside destroy'
+        p @invoice
+        if @invoice.destroy
+          render json: "Invoice deleted"
+        end
       end
 
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_invoice
-          @invoice = Invoice.find(params[:id])
+          p Invoice.last
+          p Invoice.last.id
+          p params[:id]
+          p params[:id].class
+          p params[:id].to_i
+          p params[:id].to_i.class
+          @invoice = Invoice.find(118)
         end
 
         def attach_main_pic(item)
