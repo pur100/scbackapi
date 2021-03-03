@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_123655) do
+ActiveRecord::Schema.define(version: 2021_03_03_142204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,11 @@ ActiveRecord::Schema.define(version: 2021_03_01_123655) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "company_name"
+    t.string "company_siret"
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "tel"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
