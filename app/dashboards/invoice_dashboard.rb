@@ -14,7 +14,9 @@ class InvoiceDashboard < Administrate::BaseDashboard
     user_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    status: Field::String,
+    status: Field::SelectBasic.with_options({
+        choices: ["En attente", "En cours de traitement", "Créance recouvrée", "Fermée"]
+      })
   }.freeze
 
   # COLLECTION_ATTRIBUTES

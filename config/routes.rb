@@ -17,7 +17,7 @@ Rails.application.routes.draw do
    get :debtors, to: 'debtors#user_index'
  end
 
- get '/', to: 'invoices#index'
+ # get '/', to: 'invoices#index'
 
  resources :contacts, except: [:destroy, :update]
  resources :invoices

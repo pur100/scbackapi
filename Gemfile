@@ -35,6 +35,9 @@ gem "rack-cors"
 
 gem "administrate"
 
+gem 'administrate-field-select', '~> 2.0', require: 'administrate/field/select_basic'
+
+
 
 gem 'dotenv-rails', groups: [:development, :test]
 
