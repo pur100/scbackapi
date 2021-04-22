@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class LoginController < ApplicationController
-  before_action :authorize_access_request!, only: [:destroy]
+  # commented to try and logout even if token expired
+  # before_action :authorize_access_request!, only: [:destroy]
   before_action :authorize_refresh_request!, only: [:destroy_by_refresh]
 
   def create

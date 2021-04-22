@@ -28,7 +28,7 @@
         # attach_main_pic(@invoice)
         if @invoice.save!
           InvoiceMailer.with(invoice: @invoice).invoice_mail.deliver_later
-          # InvoiceClientMailer.with(invoice: @invoice).invoice_client_mail.deliver_later
+          InvoiceClientMailer.with(invoice: @invoice).invoice_client_mail.deliver_later
           render json: @invoice, status: :created, location: @invoice
         else
           render json: @invoice.errors, status: :unprocessable_entity

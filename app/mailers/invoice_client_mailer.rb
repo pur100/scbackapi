@@ -1,6 +1,7 @@
 class InvoiceClientMailer < ApplicationMailer
   def invoice_client_mail
       @invoice = params[:invoice]
-      mail(to: "contact@solutioncreance.fr", subject: "Nouvelle facture en ligne")
+      @user = User.find(params[:invoice].user_id)
+      mail(to: @user.email, subject: "Votre facture a bien été réceptionnée")
     end
 end

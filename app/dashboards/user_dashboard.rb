@@ -12,6 +12,10 @@ class UserDashboard < Administrate::BaseDashboard
     invoices: Field::HasMany,
     id: Field::Number,
     email: Field::String,
+    first_name: Field::String,
+    last_name: Field::String,
+    company_name: Field::String,
+    company_siret: Field::Number,
     password_digest: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -25,6 +29,10 @@ class UserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     debtors
     invoices
+    first_name
+    last_name
+    company_name
+    company_siret
     id
     email
   ].freeze
@@ -35,6 +43,10 @@ class UserDashboard < Administrate::BaseDashboard
     debtors
     invoices
     id
+    first_name
+    last_name
+    company_name
+    company_siret
     email
     password_digest
     created_at
@@ -47,6 +59,10 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     debtors
     invoices
+    first_name
+    last_name
+    company_name
+    company_siret
     email
     password_digest
   ].freeze

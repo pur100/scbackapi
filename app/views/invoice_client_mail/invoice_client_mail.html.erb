@@ -3,7 +3,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>Nouvelle facture à traiter !</p>
+    <p>Bonjour <%= @user.first_name %>,</p>
+
+    <p>Votre facture a bien été réceptionnée par nos équipes et sera traitée dans les plus brefs délais.</p>
 
     <h3><a href="<%= @invoice.file %>">A retrouver ici:</a></h3>
 

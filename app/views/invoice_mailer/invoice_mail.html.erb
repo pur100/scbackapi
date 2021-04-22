@@ -5,6 +5,9 @@
   <body>
     <p>Nouvelle facture à traiter !</p>
 
+    <p>Le client <%= @user.first_name %> a ajouté une nouvelle facture : </p>
+    <p>les étapes effectuées sont les suivantes : </p>
+
     <h3><a href="<%= @invoice.file %>">A retrouver ici:</a></h3>
 
   </body>
