@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
  # get '/', to: 'invoices#index'
 
- resources :contacts, except: [:destroy, :update]
+ resources :contacts, except: [:destroy, :update, :get]
  resources :invoices
  resources :debtors do
    get :invoices, to: 'invoices#debtor_index'
