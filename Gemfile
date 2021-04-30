@@ -11,6 +11,8 @@ gem "rails", ENV.fetch("RAILS_VERSION", "~> 6.0")
 # Use sqlite3 as the database for Active Record
 gem "pg"
 
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
+
 # Use Puma as the app server
 gem "puma", "~> 3.7"
 
