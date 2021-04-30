@@ -15,7 +15,7 @@
 
       # GET /invoices/1
       def show
-        render json: @invoice
+        # render json: @invoice
       end
 
       # POST /invoices
