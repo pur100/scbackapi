@@ -5,22 +5,22 @@
 
 # Read more: https://github.com/cyu/rack-cors
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-  # allow do
-  #   origins 'https://nuxt-sc.herokuapp.com/'
+  allow do
+    origins 'https://nuxt-sc.herokuapp.com/'
 
-  #   resource '*',
-  #     headers: :any,
-  #     credentials: true,
-  #     methods: [:get, :post, :put, :patch, :delete, :options, :head]
-  # end
-  # allow do
-  #   origins 'http://192.168.1.38:3000'
+    resource '*',
+      headers: :any,
+      credentials: true,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+  allow do
+    origins 'http://192.168.1.38:3000'
 
-  #   resource '*',
-  #     headers: :any,
-  #     credentials: true,
-  #     methods: [:get, :post, :put, :patch, :delete, :options, :head]
-  # end
+    resource '*',
+      headers: :any,
+      credentials: true,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
 
   allow do
     origins 'https://solutioncreance.fr'
