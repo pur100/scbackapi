@@ -5,7 +5,7 @@
       def index
         @invoices = Invoice.all
 
-        render json: @invoices
+        # render json: @invoices
       end
 
       def debtor_index
@@ -15,7 +15,7 @@
 
       # GET /invoices/1
       def show
-        # render json: @invoice
+        render json: @invoice
       end
 
       # POST /invoices
