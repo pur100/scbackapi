@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_142204) do
+ActiveRecord::Schema.define(version: 2021_05_04_172413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,9 @@ ActiveRecord::Schema.define(version: 2021_03_03_142204) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.string "reference"
+    t.string "contact_tel"
+    t.string "contact_mail"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -79,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_142204) do
     t.string "company_siret"
     t.string "first_name"
     t.string "last_name"
-    t.integer "tel"
+    t.string "tel"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

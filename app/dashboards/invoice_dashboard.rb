@@ -9,6 +9,7 @@ class InvoiceDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
+    reference: Field::String,
     amount: Field::Number,
     file: Field::String,
     user_id: Field::Number,
@@ -26,6 +27,7 @@ class InvoiceDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
+    reference
     amount
     file
     user_id
@@ -35,6 +37,7 @@ class InvoiceDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
+    reference
     amount
     file
     user_id
@@ -48,6 +51,7 @@ class InvoiceDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     amount
+    reference
     file
     user_id
     status

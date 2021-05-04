@@ -1,6 +1,6 @@
     class InvoicesController < ApplicationController
       before_action :set_invoice, only: [:show, :update]
-      STATUS = ["En attente", "En cours de traitement", "Créance recouvrée", "Fermée"]
+      STATUS = ["Réceptionnée", "En cours de traitement", "Créance recouvrée", "Fermée"]
       # GET /invoices
       def index
         @invoices = Invoice.all
@@ -74,6 +74,8 @@
           {
             amount: invoice_params[:amount],
             user_id: invoice_params[:user_id],
+            contact_mail: invoice_params[:email],
+            contact_tel: invoice_params[:tel],
           }
         end
 
