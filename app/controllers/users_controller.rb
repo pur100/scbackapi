@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       end
       # render json: { current_user: current_user.to_json, user: user.to_json }
     else
+      puts "------------------------------------------------------------------ I AM HERE"
       render json: { errors: @user.errors.full_messages, custom: "fuuuuuck" }
     end
   end
