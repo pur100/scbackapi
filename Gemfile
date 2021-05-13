@@ -28,6 +28,8 @@ gem "bcrypt", "~> 3.1.7"
 gem "jwt"
 gem "redis"
 gem "jwt_sessions"
+gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
+
 
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
