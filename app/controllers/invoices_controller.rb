@@ -32,7 +32,7 @@
 
           render json: @invoice, status: :created, location: @invoice
         else
-          render json: @invoice.errors, status: :unprocessable_entity
+          render json: @invoice.errors, status: :unprocessable_entity, error_message: "Il y a eu une erreur, veuillez ré-essayer."
         end
       end
 
