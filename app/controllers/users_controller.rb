@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     puts "----------------------------------------"
     p @user.valid?
-    if @user.save!
+    if @user.save
       puts "user saved"
       if @user.authenticate(params[:password])
         payload = { user_id: @user.id }
