@@ -13,7 +13,7 @@ class LoginController < ApplicationController
       session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
       render json: { session: session.login, user: user, invoices: user.invoices }
     else
-      render json: {error_message: "Connection impossible, vérifiez vos informations et recommencez."}
+      render json: {error_message: ["Connection impossible, vérifiez vos informations et recommencez."]}
     end
   end
 
