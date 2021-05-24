@@ -2,6 +2,6 @@ class ContactMailer < ApplicationMailer
   def contact_mail
       @user = params[:user]
 
-      mail(to: "contact@solutioncreance.fr", subject: "Nouveau contact !")
+      mail(to: @user.email, subject: "Votre compte a bien été créé !")
     end
 end

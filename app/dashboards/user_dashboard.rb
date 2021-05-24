@@ -12,6 +12,7 @@ class UserDashboard < Administrate::BaseDashboard
     invoices: Field::HasMany,
     id: Field::Number,
     email: Field::String,
+    email: Field::String,
     first_name: Field::String,
     last_name: Field::String,
     company_name: Field::String,
@@ -35,6 +36,7 @@ class UserDashboard < Administrate::BaseDashboard
     company_siret
     id
     email
+    tel
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -48,6 +50,7 @@ class UserDashboard < Administrate::BaseDashboard
     company_name
     company_siret
     email
+    tel
     password_digest
     created_at
     updated_at
@@ -64,6 +67,7 @@ class UserDashboard < Administrate::BaseDashboard
     company_name
     company_siret
     email
+    tel
     password_digest
   ].freeze
 
